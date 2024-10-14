@@ -13,7 +13,7 @@ font, and the Helvetica font.
 
 1. XeLaTeX installation on MacBook using Brew:
 
-    ```sh
+    ```zsh
     brew install mactex-no-gui # install mactex, skip if already installed
     ```
 
