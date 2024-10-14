@@ -5,7 +5,7 @@
 % MIT license.
 %------------------------
 
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,12pt]{article}
 
 \usepackage{fontspec}
 \usepackage{graphicx}
@@ -21,13 +21,29 @@
 \usepackage{tabularx}
 \usepackage{fontawesome5}
 \usepackage{academicons}
+\usepackage{changepage}
+
+%---------- DOCUMENT SETTINGS -------------
+
+% Fix for the font awesome package from
+% https://tex.stackexchange.com/questions/257574/fontawesome-doesnt-scale-up
+\DeclareFontFamily{U}{fontawesome1}{}
+\DeclareFontShape{U}{fontawesome1}{m}{n}{<->FontAwesome--fontawesomeone}{}
+\DeclareFontFamily{U}{fontawesome2}{}
+\DeclareFontShape{U}{fontawesome2}{m}{n}{<->FontAwesome--fontawesometwo}{}
+\DeclareFontFamily{U}{fontawesome3}{}
+\DeclareFontShape{U}{fontawesome3}{m}{n}{<->FontAwesome--fontawesomethree}{}
+\DeclareRobustCommand{\FAone}{\usefont{U}{fontawesome1}{m}{n}}
+\DeclareRobustCommand{\FAtwo}{\usefont{U}{fontawesome2}{m}{n}}
+\DeclareRobustCommand{\FAthree}{\usefont{U}{fontawesome3}{m}{n}}
 
 % Font settings
-\newfontfamily{\Iosevka}{Iosevka}
-\newfontfamily{\IosevkaSlab}{Iosevka Slab}
-\newfontfamily{\titlefont}{Iosevka Light}
+\newfontfamily{\titlefont}{Iosevka Bold}
 \newfontfamily{\headingfont}{Iosevka Slab}
+\setmainfont{Baskerville}
 
+% Faux/Fake Small Caps from
+% https://tex.stackexchange.com/questions/55664/fake-small-caps-with-xetex-fontspec
 \makeatletter
 \newlength\fake@f
 \newlength\fake@c
@@ -50,8 +66,9 @@
     \scalebox{\Cscale}[1]{#1}\fi%
   \ifx\relax#2\relax\else\fauxschelphelp#2\relax\fi}
 
+% Header and Footer reset
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -63,224 +80,172 @@
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
 
+% Set URL style to match document
 \urlstyle{same}
 
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
+% Section Header formatting
 \titleformat{\section}{
   \vspace{-4pt}\headingfont\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
-%-------------------------
-% Custom commands
+%---------- CUSTOM COMMANDS --------------
+% Commands set up commonly completed operations or blocks
 
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+% Creates a heading with an item on the left and an item on the right of the page
+\newcommand{\simpleHeading}[2]{
+    \vspace{-1pt}
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        #1 & #2 \\
+    \end{tabular*}
 }
 
-
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+% Used for a major degree
+\newcommand{\majorDegreeSubHeading}[2]{
+    \simpleHeading{\hspace{7pt}#1}{\textit{#2}}
 }
 
-
-\newcommand{\resumeSubSubheading}[2]{
-    \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
+% Used for a minor degree
+\newcommand{\minorDegreeSubHeading}[2]{
+    \simpleHeading{\hspace{14pt}#1}{\textit{#2}}
 }
 
-
-\newcommand{\resumeEducationHeading}[8]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-      \textit{\small#5} & \textit{\small #6} \\
-      \textit{\small#7} & \textit{\small #8} \\
-    \end{tabular*}\vspace{-5pt}
+% Used for a job position. Fields are: {Company}{Location}{Position}{Date}
+\newcommand{\positionHeading}[4]{
+    \simpleHeading{\textbf{#1}}{\textit{#2}}
+    \simpleHeading{\textit{#3}}{\textit{#4}}
 }
 
-
-\newcommand{\resumeProjectHeading}[2]{
-    \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+% Defines a simple paragraph for positions or projects that don't need bullets
+\newcommand{\simpleParagraph}[1]{
+    \vspace{-1pt}
+    \begin{adjustwidth}{7pt}{0pt}
+        #1
+    \end{adjustwidth}
 }
 
-
-\newcommand{\resumeOrganizationHeading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & \textit{\small #2} \\
-      \textit{\small#3}
-    \end{tabular*}\vspace{-7pt}
+\newcommand{\location}[0]{
+    {\scriptsize\faIcon{map-marker}}
 }
-
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
-%-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%---------- RESUME -----------
 \begin{document}
-
 %---------- HEADING ----------
 
-\begin{center}
-    {\Huge \titlefont{\fauxsc{Nick Waddoups}}} \\ \vspace{3pt}
-    \small
-    \faIcon{mobile-alt} \hspace{.5pt} \href{tel:13853993215}{(385) 399-3215}
-    $|$
-    \faIcon{envelope} \hspace{.5pt} \href{mailto:npw1010@gmail.com}{npw1010@gmail.com}
-    $|$
-    \faIcon{github} \hspace{.5pt} \href{https://github.com/nwad123}{GitHub}
-    $|$
-    \faIcon{globe} \hspace{.5pt} \href{https://nwad123.github.io/assume_false}{Website}
-    $|$
-    \faIcon{map-marker-alt} \hspace{.5pt} \href{https://maps.app.goo.gl/kk1LaLRyTFJBtjCX8}{Utah}
-\end{center}
+{\Huge \titlefont{\fauxsc{Nick Waddoups}}} \\
+\vspace{3pt}
+\small
+
+% Table Variable (spread across top)
+%\setlength\tabcolsep{0pt}
+%\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} lccr }
+%    \faIcon{envelope} \hspace{.5pt} \href{mailto:npw1010@gmail.com}{npw1010@gmail.com} &
+%    \faIcon{mobile-alt} \hspace{.5pt} \href{tel:13853993215}{(385) 399-3215} &
+%    \faIcon{github} \hspace{.5pt} \href{https://github.com/nwad123}{\underline{GitHub}} &
+%    \faIcon{globe} \hspace{.5pt} \href{https://nwad123.github.io/assume_false}{\underline{Website}} \\
+%\end{tabular*}
+
+% '|' separated version
+\faIcon{envelope} \hspace{.5pt} \href{mailto:npw1010@gmail.com}{npw1010@gmail.com}
+  \hspace{0.0625in}$|$\hspace{0.0625in}
+\faIcon{mobile-alt} \hspace{.5pt} \href{tel:13853993215}{(385) 399-3215}
+  \hspace{0.0625in}$|$\hspace{0.0625in}
+\faIcon{github} \hspace{.5pt} \href{https://github.com/nwad123}{\underline{GitHub}}
+  \hspace{0.0625in}$|$\hspace{0.0625in}
+\faIcon{globe} \hspace{.5pt} \href{https://nwad123.github.io/assume_false}{\underline{Website}}
 
 %----------- EDUCATION -----------
 
 \section{Education}
-  \vspace{3pt}
-  \resumeSubHeadingListStart
-    
-    \resumeEducationHeading
-      {Utah State University}{Logan, UT}
-      {M.Sc. in Computer Engineering.   \textbf{GPA: 3.XX/4.00}}{2024 \textbf{--} 2025}
-      {B.Sc. in Computer Engineering.}{2020 \textbf{--} 2024}
-      {\hspace{0.125in} - Minor in AnticipatoryIntelligence.}{}
-
-  \resumeSubHeadingListEnd
-
-
-
-%----------- SKILLS -----------
-
-\section{Skills}
-  \vspace{2pt}
-  \resumeSubHeadingListStart
-    \small{\item{
-        
-        \textbf{Languages:}{ C/C++, MATLAB, Python, VHDL, Verilog, } \\ \vspace{3pt}
-        
-        \textbf{Technologies:}{ Qt, Flask, Django, Node.js, React.js, MySQL, MongoDB, Git, SVN, Docker, AWS, Kubernetes, GCP, Kafka, RabbitMQ, OpenCV, PyTorch, TensorFlow} \\ \vspace{3pt}
-        
-        \textbf{Methodologies:}{ Agile, Scrum, OOP, Functional Programming, DevOps, CI/CD, TDD} \\ \vspace{3pt}
-        
-    }}
-  \resumeSubHeadingListEnd
-
-
+      \simpleHeading{\textbf{Utah State University}}{\textit{Logan, UT}}
+      \majorDegreeSubHeading{M.S. in Computer Engineering. \textit{GPA: 4.00/4.00} }{2024 -- 2025}
+      \majorDegreeSubHeading{B.Sc. in Computer Engineering.}{2020 \textbf{--} 2024}
+      \minorDegreeSubHeading{-- Minor in Anticipatory Intelligence.}{}
+      \vspace{-15pt}
 
 %----------- EXPERIENCE -----------
 
 \section{Experience}
-  \vspace{3pt}
-  \resumeSubHeadingListStart
+    % NG Experience
+    \positionHeading{Northrop Grumman}{Utah}{Electrical Engineering Intern}{2022 -- 2024}
 
-    \resumeSubheading
-      {Northrop Grumman}{Utah}
-      {Electrical Engineering Intern}{2022 \textbf{--} 2024}
-        \resumeItemListStart
-            \resumeItem{Thing1}
-            \resumeItem{Thing2}
-            \resumeItem{Thing3}
-            \resumeItem{Thing4}
-        \resumeItemListEnd
+    % Research Experience
+    \vspace{10pt}
+    \positionHeading{Utah State University}{}{Formal Verification Researcher}{2022 -- Present (part time)}
 
-  \resumeSubHeadingListEnd
-
-%----------- PROJECTS -----------
-
-% \section{Projects}
-%     \vspace{3pt}
-%     \resumeSubHeadingListStart
-%       
-%       \resumeProjectHeading
-%         {\textbf{Project1} $|$ \emph{\href{https://github.com/nwad123}{\color{blue}Fake Linky}}}{}
-%           \resumeItemListStart
-%             \resumeItem{New Project}
-%           \resumeItemListEnd
-%       
-%     \resumeSubHeadingListEnd
-
+    % TA Experience
+    \vspace{10pt}
+    \positionHeading{Utah State University}{}
+        {Computer Architecture and Digital Design TA}
+        {2022 -- Present (part time)}
 %----------- RELEVANT COURSEWORK -----------
 
-\section{Relevant Coursework}
-  \vspace{2pt}
-  \resumeSubHeadingListStart
-    \small{\item{
-        \textbf{Major coursework:}{ Materials Science, Electrical Circuits I-II, Digital System Design, Numerical Methods, Probability Theory, Electronics I-II, Signals and Systems, Electromagnetic Field Theory, Energy Conversion, System Dynamics and Control, Communication Engineering, Pattern Recognition, Introduction to Digital Signal Processing, Introduction to Digital Communications, Introduction to Database Systems, Introduction to Image Processing, Machine Vision} \\ \vspace{3pt}
-        
-        \textbf{Minor coursework:}{ Discrete Computational Structures, Introduction to Object-Oriented Programming, Data Structures and Algorithms, Computer Organization, Fundamentals of Software Engineering}
-    }}
-  \resumeSubHeadingListEnd
+    % Soft Skills Course
+    \vspace{10pt}
+    \simpleHeading{\textbf{Professional Soft Skills Course}}{\textit{USU Center for Anticipatory Intelligence}}
 
+    \simpleParagraph{Acquired and practiced soft-skill tools and techniques in the areas of self-assessment, team facilitation and dynamics, emotional intelligence, leadership, and creativity. Received training and practice from industry professionals and academics.}
+    
+    % Computer Architecture Courses
+    \vspace{10pt}
+    \simpleHeading{\textbf{Computer Architecture Courses}}{\textit{USU College of Electrical and Computer Engineering}}
 
+    \simpleParagraph{TODO.}
+    
+    % Reconfigurable / FPGA Courses
+    \vspace{10pt}
+    \simpleHeading{\textbf{FPGA Design Courses}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    \simpleParagraph{TODO.}
+    
+    % Formal Verification Course
+    \vspace{10pt}
+    \simpleHeading{\textbf{Formal Verification Course and Research}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    \simpleParagraph{TODO.}
+    
+    % Compilers / CS Courses (include assembler from reconfigurable and computer arch perhaps?)
+    \vspace{10pt}
+    \simpleHeading{\textbf{Compiler Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    \simpleParagraph{TODO.}
+    
+%----------- PROJECTS -----------
+
+    % Potentially add Narrows if it becomes relevant
+    \vspace{10pt}
+    \simpleHeading{\textbf{Narrows - Cross Platform C/C++ Cross Thread Channels}}{\textit{Personal Project}}
+
+    \simpleParagraph{TODO.}
+
+%----------- SKILLS -----------
+
+\section{Technical Skills}
+  \begin{adjustwidth}{0.15in}{0.0in}
+    \begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}} cccccc }
+        C/C++
+            & \href{https://www.mathworks.com/products/matlab.html}{MATLAB}
+            & Python & VHDL & Verilog & Rust \\
+        \href{https://dafny.org/}{Dafny}
+            & \href{https://www.modestchecker.net/}{M\fakesc{odest}}
+            & Linux & Microsoft Office & \LaTeX & Vivado/Quartus \\
+    \end{tabular*}
+  \end{adjustwidth}
+
+%----------- VOLUNTEER WORK -----------
+
+\section{Volunteer Work}
+    \positionHeading{Service Volunteer}{Brisbane, Australia}
+        {Church of Jesus Christ of Latter-day Saints}{2018 -- 2020}
 
 %----------- CERTIFICATES -----------
 
-% \section{Certificates}
-  % \resumeSubHeadingListStart
-    
-    % \resumeOrganizationHeading
-      % {Procter \& Gamble VIA Certificate Program}{Feb 2022}{Project Management and Personal Productivity}
-    
-  % \resumeSubHeadingListEnd
-
-
-
 %----------- ORGANIZATIONS -----------
-
-% \section{Organizations}
-  % \resumeSubHeadingListStart
-    
-    % \resumeOrganizationHeading
-      % {Institute of Electrical and Electronics Engineers (IEEE)}{Feb 2022 -- Present}{Student Member}
-    
-  % \resumeSubHeadingListEnd
-
-
 
 %----------- HOBBIES -----------
 
-% \section{Hobbies}
-  % \resumeSubHeadingListStart
-    % \small{\item{Basketball, Swimming, Fitness, Eight-ball, Horology}}
-  % \resumeSubHeadingListEnd
-
-
-
 %----------- REFERENCES -----------
 
-% \section{References}
-  % \vspace{2pt}
-  % \resumeSubHeadingListStart
-    % \item{References available upon request.}
-  % \resumeSubHeadingListEnd
-
-
-
-%-------------------------------------------
 \end{document}
