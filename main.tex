@@ -119,7 +119,7 @@
     \simpleHeading{\textit{#3}}{\textit{#4}}
 }
 
-% Defines a simple paragraph for positions or projects that don't need bullets
+% Defines a simple paragraph for positions or projects
 \newcommand{\simpleParagraph}[1]{
     \vspace{-1pt}
     \begin{adjustwidth}{7pt}{0pt}
@@ -130,8 +130,17 @@
 \newcommand{\location}[0]{
     {\scriptsize\faIcon{map-marker}}
 }
+
+%---------- LINKS -----------
+
+\newcommand{\matlab}[0]{
+    \href{https://www.mathworks.com/products/matlab.html}{MATLAB}
+}
+
 %---------- RESUME -----------
+
 \begin{document}
+
 %---------- HEADING ----------
 
 {\Huge \titlefont{\fauxsc{Nick Waddoups}}} \\
@@ -165,66 +174,121 @@
       \minorDegreeSubHeading{-- Minor in Anticipatory Intelligence.}{}
       \vspace{-15pt}
 
-%----------- EXPERIENCE -----------
+%----------- EXPERIENCE ------------
 
 \section{Experience}
-    % NG Experience
+
+%----------- WORK EXPERIENCE -----------
+
+    %% NG Experience
     \positionHeading{Northrop Grumman}{Utah}{Electrical Engineering Intern}{2022 -- 2024}
 
-    % Research Experience
-    \vspace{10pt}
-    \positionHeading{Utah State University}{}{Formal Verification Researcher}{2022 -- Present (part time)}
+    \simpleParagraph{
+        \begin{itemize}
+            \item Wrote a shielding effectiveness facility electromagnetic pulse (EMP) test plan in
+                accordance with MIL-STD-188-125-1. Test plan laid out the procedures, setup, exposure
+                limits and required shielding effectiveness to show that the facility meets requirements.
 
-    % TA Experience
-    \vspace{10pt}
-    \positionHeading{Utah State University}{}
-        {Computer Architecture and Digital Design TA}
-        {2022 -- Present (part time)}
+            \item Developed a \matlab script that calculated planar shielding effectiveness of any
+                material across any frequency range. This MATLAB script enabled designers to understand
+                shielding characteristics without having to perform any tests or expensive simulation,
+                reducing facility shielding development cost and schedule.
+
+            \item Developed a Python script to characterize radiation Single Event Effects (SEE) in
+                natural space. The Python script processed 1,000,000+ datapoints and reduced analysis
+                run times from several hours to 30 seconds.
+
+            \item Designed and developed a robust MATLAB script / GUI application that processed hundreds
+                of data files and generated figures and tables showing test trends and outcomes. The
+                MATLAB script reduced data processing time by 90 percent.
+
+            \item Developed a MATLAB script that automated the process of building cable cross sections
+                in CST from cable procurement drawings, reducing CST-model setup time by X percent.
+
+            \item Developed a MATLAB script that used signal processing techniques to characterize
+                shielding effectiveness affects on time-domain transients.
+
+
+        \end{itemize}
+    }
+
+    %% Research Experience
+    %\vspace{10pt}
+    %\positionHeading{Utah State University}{}{Formal Verification Researcher}{2022 -- Present (part time)}
+
+    %% TA Experience
+    %\vspace{10pt}
+    %\positionHeading{Utah State University}{}
+    %    {Computer Architecture and Digital Design TA}
+    %    {2022 -- Present (part time)}
+
 %----------- RELEVANT COURSEWORK -----------
 
-    % Soft Skills Course
+    %% Soft Skills Course
     \vspace{10pt}
     \simpleHeading{\textbf{Professional Soft Skills Course}}{\textit{USU Center for Anticipatory Intelligence}}
 
-    \simpleParagraph{Acquired and practiced soft-skill tools and techniques in the areas of self-assessment, team facilitation and dynamics, emotional intelligence, leadership, and creativity. Received training and practice from industry professionals and academics.}
+    \simpleParagraph{Acquired and practiced soft-skill tools and techniques in the areas of self-assessment, team
+    facilitation and dynamics, emotional intelligence, leadership, and creativity. Received training and practice
+    from industry professionals and academics.}
     
-    % Computer Architecture Courses
+    %% Computer Architecture Courses
     \vspace{10pt}
     \simpleHeading{\textbf{Computer Architecture Courses}}{\textit{USU College of Electrical and Computer Engineering}}
 
-    \simpleParagraph{TODO.}
-    
-    % Reconfigurable / FPGA Courses
-    \vspace{10pt}
-    \simpleHeading{\textbf{FPGA Design Courses}}{\textit{USU College of Electrical and Computer Engineering}}
+    \simpleParagraph{
+        \begin{itemize}
+            \item Developed a L2 cache prefetcher simulator in C++ within the trace-based ChampSim CPU
+                simulator framework to handle simulator configuration, builds, runs and output average
+                IPC and L2 Miss Rate.
 
-    \simpleParagraph{TODO.}
-    
-    % Formal Verification Course
-    \vspace{10pt}
-    \simpleHeading{\textbf{Formal Verification Course and Research}}{\textit{USU College of Electrical and Computer Engineering}}
+            \item Developed MATLAB script to graphically compare L2 cache prefetcher results and a
+                generic next-line prefetcher.
 
-    \simpleParagraph{TODO.}
-    
-    % Compilers / CS Courses (include assembler from reconfigurable and computer arch perhaps?)
-    \vspace{10pt}
-    \simpleHeading{\textbf{Compiler Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
+            \item Developed a trace-based CPU cache simulator in C with command line options for the
+                block, set, and line bits. The cache output a table with hit and miss results for all
+                memory accesses in the trace. The cache could be configured to be direct-mapped or
+                associative and used a least-recently-used replacement policy.
 
-    \simpleParagraph{TODO.}
+        \end{itemize}
+    }
+    
+    %% Reconfigurable / FPGA Courses
+    %\vspace{10pt}
+    %\simpleHeading{\textbf{FPGA Design Courses}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    %\simpleParagraph{
+    %    \begin{itemize}
+    %        \item 5-stage processor
+    %        \item Brick-breaker game
+    %    \end{itemize}
+    %}
+    
+    %% Formal Verification Course
+    %\vspace{10pt}
+    %\simpleHeading{\textbf{Formal Verification Course and Research}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    %\simpleParagraph{TODO.}
+    
+    %% Compilers / CS Courses (include assembler from reconfigurable and computer arch perhaps?)
+    %\vspace{10pt}
+    %\simpleHeading{\textbf{Compiler Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    %\simpleParagraph{TODO.}
     
 %----------- PROJECTS -----------
 
-    % Potentially add Narrows if it becomes relevant
-    \vspace{10pt}
-    \simpleHeading{\textbf{Narrows - Cross Platform C/C++ Cross Thread Channels}}{\textit{Personal Project}}
+    %% Potentially add Narrows if it becomes relevant
+    %\vspace{10pt}
+    %\simpleHeading{\textbf{Narrows - Cross Platform C/C++ Cross Thread Channels}}{\textit{Personal Project}}
 
-    \simpleParagraph{TODO.}
+    %\simpleParagraph{TODO.}
     
-    % TCP/IP Stack from networks
-    \vspace{10pt}
-    \simpleHeading{\textbf{WaddoupsNet - A TCP/IP Stack on Linux}}{\textit{USU ECE Networking Class Project}}
+    %% TCP/IP Stack from networks
+    %\vspace{10pt}
+    %\simpleHeading{\textbf{WaddoupsNet - A TCP/IP Stack on Linux}}{\textit{USU ECE Networking Class Project}}
 
-    \simpleParagraph{TODO.}
+    %\simpleParagraph{TODO.}
 
 %----------- SKILLS -----------
 
@@ -232,7 +296,7 @@
   \begin{adjustwidth}{0.15in}{0.0in}
     \begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}} cccccc }
         C/C++
-            & \href{https://www.mathworks.com/products/matlab.html}{MATLAB}
+            & \matlab
             & Python & VHDL & Verilog & Rust
             \vspace{5pt} \\
         
