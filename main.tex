@@ -147,15 +147,6 @@
 \vspace{3pt}
 \small
 
-% Table Variable (spread across top)
-%\setlength\tabcolsep{0pt}
-%\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} lccr }
-%    \faIcon{envelope} \hspace{.5pt} \href{mailto:npw1010@gmail.com}{npw1010@gmail.com} &
-%    \faIcon{mobile-alt} \hspace{.5pt} \href{tel:13853993215}{(385) 399-3215} &
-%    \faIcon{github} \hspace{.5pt} \href{https://github.com/nwad123}{\underline{GitHub}} &
-%    \faIcon{globe} \hspace{.5pt} \href{https://nwad123.github.io/assume_false}{\underline{Website}} \\
-%\end{tabular*}
-
 % '|' separated version
 \faIcon{envelope} \hspace{.5pt} \href{mailto:npw1010@gmail.com}{npw1010@gmail.com}
   \hspace{0.0625in}$|$\hspace{0.0625in}
@@ -234,7 +225,7 @@
     
     %% Computer Architecture Courses
     \vspace{10pt}
-    \simpleHeading{\textbf{Computer Architecture Courses}}{\textit{USU College of Electrical and Computer Engineering}}
+    \simpleHeading{\textbf{Computer Architecture Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
 
     \simpleParagraph{
         \begin{itemize}
@@ -249,6 +240,20 @@
                 block, set, and line bits. The cache output a table with hit and miss results for all
                 memory accesses in the trace. The cache could be configured to be direct-mapped or
                 associative and used a least-recently-used replacement policy.
+
+        \end{itemize}
+    }
+
+    %% VLSI Courses
+    \vspace{10pt}
+    \simpleHeading{\textbf{VLSI Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
+
+    \simpleParagraph{
+        \begin{itemize}
+            \item Designed and implemented a global maze router based on an A\* router using C++17.
+
+            \item Wrote a placement command line application that used simulated annealing and slicing
+                trees to generate optimal placement solutions for given input blocks.
 
         \end{itemize}
     }
@@ -271,10 +276,23 @@
     %\simpleParagraph{TODO.}
     
     %% Compilers / CS Courses (include assembler from reconfigurable and computer arch perhaps?)
-    %\vspace{10pt}
-    %\simpleHeading{\textbf{Compiler Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
+    \vspace{10pt}
+    \simpleHeading{\textbf{Compiler Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
 
-    %\simpleParagraph{TODO.}
+    \simpleParagraph{
+        \begin{itemize}
+            \item Wrote an assembler using C++ for a custom FPGA soft processor based off the DLX ISA (similar
+                to RISCV). The assembler parsed in our custom DLX assembly code, performed a pass to resolve
+                loop references, and then emitted machine code in a format that could be loaded into the FPGA's 
+                read-only memory section.
+
+            \item Devloped a simple compiler over the course of a semester using the Java programming language.
+                The compiler compiled the toy "B++" language, which supported basic types, loops, function calls,
+                and arithmetic operations. The compiler produced MIPS assembly code which could be run using the 
+                MARS simulator.
+
+        \end{itemize}
+    }
     
 %----------- PROJECTS -----------
 
