@@ -185,10 +185,10 @@
             %    material across any frequency range. This \matlab script enabled EM designers to understand
             %    and estimate shielding characteristics without having to perform physical tests or expensive 
             %    simulations, reducing facility shielding development cost and schedule.
-            %
-            %\item Developed a Python script to characterize radiation-based Single Event Effects (SEE) in
-            %    natural space. The script processed 1,000,000+ datapoints and reduced SEE analysis
-            %    run times from several hours to 30 seconds.
+
+            \item Developed a Python script to characterize radiation-based Single Event Effects (SEE) in
+                natural space. The script processed 1,000,000+ datapoints and reduced SEE analysis
+                run times from several hours to 30 seconds.
 
             \item Designed and developed a robust \matlab GUI application that processed hundreds
                 of test-data files and generated print-ready figures and tables showing test trends and outcomes.
@@ -242,6 +242,15 @@
                 latency to illegally send information from one process to another using a prime and probe 
                 technique in the L2 and L3 caches.
 
+            \item Implemented a five-stage microprocessor based of the DLX ISA in VHDL and flashed it to a Altera FPGA.
+                The processor communicated with a desktop computer via UART and was tested with several different programs 
+                written in DLX assembly. Each VHDL module was extensively tested using Modelsim or GHDL.
+
+            \item Wrote an assembler using C++ for a custom FPGA soft processor based on the DLX ISA (similar
+                to RISC-V). The assembler parsed custom DLX assembly code, performed a pass to resolve
+                loop references, and then emitted machine code in a format that could be loaded into the FPGA's 
+                read-only memory section.
+
         \end{itemize}
     }
 
@@ -278,22 +287,22 @@
     %\simpleParagraph{TODO.}
     
     %% Compilers / CS Courses (include assembler from reconfigurable and computer arch perhaps?)
-    \vspace{10pt}
-    \simpleHeading{\textbf{Compiler-Related Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
-
-    \simpleParagraph{
-        \begin{itemize}
-            \item Wrote an assembler using C++ for a custom FPGA soft processor based on the DLX ISA (similar
-                to RISC-V). The assembler parsed custom DLX assembly code, performed a pass to resolve
-                loop references, and then emitted machine code in a format that could be loaded into the FPGA's 
-                read-only memory section.
-
-            \item Devloped a compiler using Java that compiled the toy "B++" language. The compiler supported basic 
-                types, loops, function calls, and arithmetic operations and produced MIPS assembly that
-                was run using the MARS simulator.
-
-        \end{itemize}
-    }
+    %\vspace{10pt}
+    %\simpleHeading{\textbf{Compiler-Related Coursework}}{\textit{USU College of Electrical and Computer Engineering}}
+    %
+    %\simpleParagraph{
+    %    \begin{itemize}
+    %        \item Wrote an assembler using C++ for a custom FPGA soft processor based on the DLX ISA (similar
+    %            to RISC-V). The assembler parsed custom DLX assembly code, performed a pass to resolve
+    %            loop references, and then emitted machine code in a format that could be loaded into the FPGA's 
+    %            read-only memory section.
+    %
+    %        \item Devloped a compiler using Java that compiled the toy "B++" language. The compiler supported basic 
+    %            types, loops, function calls, and arithmetic operations and produced MIPS assembly that
+    %            was run using the MARS simulator.
+    %
+    %    \end{itemize}
+    %}
     
     %% Soft Skills Course
     \vspace{10pt}
@@ -325,7 +334,7 @@
         C/C++
             & \matlab
             & Python
-            & Assembly (ARM, x86)
+            & VHDL / Verilog
             \vspace{4pt} 
             \\
        
